@@ -1,8 +1,28 @@
 import { Link } from 'react-router-dom'
 import Input from './Input'
+import { api } from '../api/api'
+import { UseUserStore } from '../store/UseStore'
 
 const CreateItem = () => {
-    const handleSubmit = () => {}
+    //  const {setSession} = UseUserStore()
+    const handleSubmit = (e) => {
+e.preventDefault();
+
+const item = {
+title: e.target.title.value,
+description : e.target.description.value,
+price : e.target.price.value,
+imageUrl : e.target.imageUrl.value
+}
+
+try{
+api.CreateItem(item);
+}
+catch(error){
+console.error(error);
+}
+
+    }
     return (
         <div className="container">
             <div class="page-header">

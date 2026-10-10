@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import ItemCard from '../components/ItemCard'
 import { api } from '../api/api'
 
+
 const ItemsList = () => {
     
     const [items, setItems] = useState([])
- 
+ const [loading,setLoadings] = useState(false)
     const [error, setError] = useState(null)
 
 
@@ -33,7 +34,7 @@ const ItemsList = () => {
                 <h1>Все товары</h1>
             </div>
             
-            {/* Блок статистики лучше показывать только после загрузки */}
+       
             {!loading && (
                 <div className="stats">
                     <div className="stat-item">

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { UseUserStore } from "../store/UseStore"
 
 const apiInstance = axios.create({
     baseURL: "https://api.kitek-pg.ru/api/marketplace/",
@@ -8,6 +9,14 @@ const apiInstance = axios.create({
     },  
 })
 
+apiInstance.interceptors.request.use((config) => {
+    const {session} = UseUserStore.getState()
+
+    if(session?.token){
+        config.headers.Authorization = `Bearer ${session.token}`
+    }
+    return config
+})
 const registerUser = async (user) => {
 const res = await apiInstance.post("/auth/register", user)
 return res
@@ -22,8 +31,21 @@ const getItems= async () => {
     const item = await apiInstance.get("/items");
     return item;
 }
+
+const postItems = async (i) => {
+const item = await apiInstance.post("/items", i)
+return item;
+}
+
+const sendMessage = async (message) => {
+const res = await apiInstance.post("/messages", message)
+return res
+}
+
 export const api = {
     registerUser,
     loginUser,
-   getItems
+   getItems,
+   sendMessage,
+   postItems
 }
