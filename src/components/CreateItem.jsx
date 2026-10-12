@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Input from './Input'
 import { api } from '../api/api'
 import { UseUserStore } from '../store/UseStore'
 
 const CreateItem = () => {
     //  const {setSession} = UseUserStore()
+    const navigate  = useNavigate()
     const handleSubmit = (e) => {
 e.preventDefault();
 
@@ -16,7 +17,9 @@ imageUrl : e.target.imageUrl.value
 }
 
 try{
-api.CreateItem(item);
+api.postItems(item)
+navigate("/")
+
 }
 catch(error){
 console.error(error);

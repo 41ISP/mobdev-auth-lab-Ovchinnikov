@@ -32,7 +32,7 @@ const getItems= async () => {
     return item;
 }
 
-const postItems = async (i) => {
+const sendItems = async (i) => {
 const item = await apiInstance.post("/items", i)
 return item;
 }
@@ -42,10 +42,17 @@ const res = await apiInstance.post("/messages", message)
 return res
 }
 
+const deleteItems = async (id) => {
+const res = await apiInstance.delete(`/items/${id}`);
+return res
+}
+
+
 export const api = {
     registerUser,
     loginUser,
    getItems,
    sendMessage,
-   postItems
+   sendItems,
+   deleteItems
 }

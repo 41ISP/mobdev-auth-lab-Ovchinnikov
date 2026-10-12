@@ -17,6 +17,9 @@ const NavBar = () => {
                         <li>
                             <Link to={'/'}>Домой</Link>
                         </li>
+                        <li>
+                            <Link to={'/bids'}>Ставки</Link>
+                        </li>
                         {!session ? (
                         
                         <li>

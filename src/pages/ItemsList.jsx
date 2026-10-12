@@ -29,7 +29,7 @@ const ItemsList = () => {
 
     return (
         <div className="container">
-            {/* В JSX для атрибутов используется className, а не class */}
+            
             <div className="page-header">
                 <h1>Все товары</h1>
             </div>
@@ -61,7 +61,7 @@ const ItemsList = () => {
                 {loading && <p>Загрузка товаров...</p>}
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 
-                {/* Проверка на наличие массива перед map */}
+               
                 {!loading && !error && items.map((item, i) => (
                     <ItemCard key={item.id || i} {...item} />
                 ))}
