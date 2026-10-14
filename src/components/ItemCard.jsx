@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom"
 import { api } from "../api/api"
 
 
 
 const ItemCard = ({
+    id,
     status,
     title,
     description,
@@ -14,11 +16,13 @@ const ItemCard = ({
 }) => {
 
 const handleDeleted = () => {
-    api.deleteItems(1791619213875);
+   
 }
 
     return (
-        <div className="item-card">
+        <Link to={`/item/${id}`}>
+
+ <div className="item-card">
             <img src={imageUrl} class="item-image" />
             <div class="item-content">
                 <span class="status-badge status-active">{status}</span>
@@ -40,11 +44,12 @@ const handleDeleted = () => {
                         
                     
                 </div>
-                 <button onClick={handleDeleted}  class="btn-submit">
-                            Удалить  товар
-                        </button>
+               
             </div>
         </div>
+
+        </Link>
+       
     )
 }
 

@@ -6,26 +6,37 @@ import { api } from '../api/api'
 
 const ItemsList = () => {
     
-    const [items, setItems] = useState([]) 
- const [loading,setLoadings] = useState(false)
+    const {items, getItems}  = useItemStore() 
+ const [loading,setIsLoading] = useState(false)
     const [error, setError] = useState(null)
+  const [timerId, setTimerId] = useState(undefined)
+  const [stats, setStats] = useState(null)
 
-
-    useEffect(() => {
-        const fetchItems = async () => {
-            try {
-    
-                setError(null)
-                
-                const response = await api.getItems()
-                setItems(response.data)
-            } catch (err) {
-                setError(err.message || 'Не удалось загрузить товары')
-           
+    useEffect (() => {
+        const load = async () => {
+            setIsLoading(true)
+            try{    
+                await getItems()
+                setStats(await api.getStats());
+            } catch (error) {
+                console.error(error)
+                setError(error.message || "Что-то пошло не так")
+            } finally {
+                setIsLoading(false)
+            }
         }
-    }
-        fetchItems()
-    }, [] ) 
+        load()
+        setTimerId(setInterval(async () => {
+            try {
+                await getItems()
+                setStats(await api.getStats());
+            } catch (error) {}
+        }, 10000))
+        return () => {
+            clearInterval(timerId)
+        }
+    }, [])
+
 
     return (
         <div className="container">
