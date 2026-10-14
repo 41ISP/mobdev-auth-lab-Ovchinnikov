@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-
+import { useItemStore} from '../store/useItemStore';
 import ItemCard from '../components/ItemCard'
 import { api } from '../api/api'
 
 
 const ItemsList = () => {
     
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState([]) 
  const [loading,setLoadings] = useState(false)
     const [error, setError] = useState(null)
 

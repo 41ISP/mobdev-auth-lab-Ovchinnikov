@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { UseUserStore } from '../store/UseStore';
+import { UseUserStore } from '../store/useUserStore'
 
 
 const NavBar = () => {
 
-    const {session}  = UseUserStore();
+    const {session} = UseUserStore() ;
     return (
         <div className="container">
             <header>

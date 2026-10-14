@@ -1,4 +1,4 @@
-
+import { api } from "../api/api"
 
 
 
@@ -12,6 +12,11 @@ const ItemCard = ({
     highestBid,
     imageUrl,
 }) => {
+
+const handleDeleted = () => {
+    api.deleteItems(1791619213875);
+}
+
     return (
         <div className="item-card">
             <img src={imageUrl} class="item-image" />
@@ -27,10 +32,17 @@ const ItemCard = ({
                             <span class="bid-count">{bidCount}</span>
                         </div>
                     </div>
-                    <div class="item-meta">
+                   <div class="item-meta">
                         <span class="item-seller">Продавец: {username}</span>
-                    </div>
+                    </div> 
+                <div>
                 </div>
+                        
+                    
+                </div>
+                 <button onClick={handleDeleted}  class="btn-submit">
+                            Удалить  товар
+                        </button>
             </div>
         </div>
     )

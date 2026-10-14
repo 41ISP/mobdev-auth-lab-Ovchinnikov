@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { api } from "../api/api";
 
-export const useMessageStore = create((set) => ({
-    messages: [],
+export const useItemStore = create((set) => ({
+    items: [],
     getMessages: async () => {
         try {
             const res = await api.getMessage()
-            set({ messages: res.data })
+            set({ items: res.data })
 
         }
         catch (error) {
