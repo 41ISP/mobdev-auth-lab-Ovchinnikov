@@ -1,12 +1,38 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Input from './Input'
+import { api } from '../api/api'
+import { UseUserStore } from '../store/useUserStore'
+import { useState } from 'react'
 
 const CreateItem = () => {
-    const handleSubmit = () => {}
+    
+    const navigate  = useNavigate()
+    const [error, setError] = useState("");
+    const handleSubmit = (e) => {
+e.preventDefault();
+
+const item = {
+title: e.target.title.value,
+description : e.target.description.value,
+price : e.target.price.value,
+imageUrl : e.target.imageUrl.value
+}
+
+try{
+api.sendItems(item)
+navigate("/")
+
+}
+catch(error){
+console.error(error);
+}
+
+    }
     return (
         <div className="container">
             <div class="page-header">
                 <h1>Создать новый товар</h1>
+                {error && ( <div class="alert alert-error active">{error}</div> )}
             </div>
 
             <div class="form-container">

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
+import { UseUserStore } from '../store/useUserStore'
+
 
 const NavBar = () => {
+
+    const {session} = UseUserStore() ;
     return (
         <div className="container">
             <header>
@@ -9,14 +13,22 @@ const NavBar = () => {
                         🛒 Маркетплейс
                     </a>
 
-                    <ul class="nav-links" id="guest-nav">
+                    <ul className="nav-links" id="guest-nav">
                         <li>
                             <Link to={'/'}>Домой</Link>
                         </li>
                         <li>
+                            <Link to={'/bids'}>Ставки</Link>
+                        </li>
+                        {!session ? (
+                        
+                        <li>
                             <Link to={'/login'}>Войти</Link>
                         </li>
-                        <>
+
+                        ) : (
+                        
+<>
                             <li>
                                 <Link to={'/create-item'}>Создать товар</Link>
                             </li>
@@ -24,6 +36,10 @@ const NavBar = () => {
                                 <Link to={'/logout'}>Выйти</Link>
                             </li>
                         </>
+
+                        )}
+                        
+                        
                     </ul>
                 </nav>
             </header>
