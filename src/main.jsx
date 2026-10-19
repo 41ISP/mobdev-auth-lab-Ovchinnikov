@@ -13,7 +13,7 @@ import CreateItem from "./components/CreateItem.jsx"
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <BrowserRouter>
+        <BrowserRouter  basename="/mobdev-auth-lab-Ovchinnikov">
             <Routes>
                 <Route path="" element={<Layout />}>
                     <Route index element={<ItemsList />} />

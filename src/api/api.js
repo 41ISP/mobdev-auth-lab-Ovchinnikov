@@ -67,6 +67,10 @@ const loginUser = async (user) => {
     const res = await apiInstance.post("/auth/login",user);
     return res;
 }
+const getItemById = async (id) => {
+  const res = await apiInstance.get(`/items/${id}`);
+  return res.data;
+};
 
 
 
@@ -82,6 +86,7 @@ export const api = {
    getItems,
    sendItems,
    deleteItems,
-   createBid
+   createBid,
+   getItemById
    
 }
